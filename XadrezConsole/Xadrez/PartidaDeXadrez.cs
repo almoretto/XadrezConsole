@@ -6,7 +6,7 @@ namespace Xadrez
     {
         public ControleTabuleiro Tabuleiro { get; private set; }
         public int Turno { get; private set; }
-        public  Cor CorJogadorAtual { get; private set; }
+        public Cor CorJogadorAtual { get; private set; }
         public bool Terminada { get; private set; }
 
         public PartidaDeXadrez()
@@ -32,11 +32,11 @@ namespace Xadrez
         }
         public void ValidarPosicaoOrigem(Posicao pos)
         {
-            if (Tabuleiro.PecaControle(pos)==null)
+            if (Tabuleiro.PecaControle(pos) == null)
             {
                 throw new TabuleiroException("Não pode mover um espaço vazio!");
             }
-            if (CorJogadorAtual!= Tabuleiro.PecaControle(pos).CorDaPeca)
+            if (CorJogadorAtual != Tabuleiro.PecaControle(pos).CorDaPeca)
             {
                 throw new TabuleiroException("A peça que está tentando mover não é sua!");
             }
@@ -45,13 +45,20 @@ namespace Xadrez
                 throw new TabuleiroException("Não existe movimentos possíveis");
             }
         }
+        public void ValidaPosicaoDestino(Posicao origem, Posicao destino)
+        {
+            if (!Tabuleiro.PecaControle(origem).PodeMoverPara(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida!");
+            }
+        }
         private void ColocarPecas()
         {
 
         }
         private void AlteraJogador()
         {
-            if (CorJogadorAtual==Cor.Branca)
+            if (CorJogadorAtual == Cor.Branca)
             {
                 CorJogadorAtual = Cor.Preta;
             }
