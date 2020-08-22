@@ -9,5 +9,9 @@ namespace Xadrez
         {
             return "Q";
         }
+        public override bool[,] MovimentosPossiveis()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
