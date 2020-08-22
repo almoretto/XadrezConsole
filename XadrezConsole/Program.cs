@@ -7,7 +7,9 @@ namespace XadrezConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ControleTabuleiro tab = new ControleTabuleiro(8, 8);
+            Tela.ImprimeTabuleiro(tab);
+            Console.ReadKey();
         }
     }
 }
