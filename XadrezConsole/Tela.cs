@@ -21,7 +21,7 @@ namespace XadrezConsole
                     }
                     else
                     {
-                        PrintPiece(tab.PecaPosicao(i, j));
+                        ImprimePeca(tab.PecaPosicao(i, j));
                         Console.Write(" ");
                         //Console.Write(board.PiecePut(i, j) + " ");
                     }
@@ -30,7 +30,7 @@ namespace XadrezConsole
             }
             Console.WriteLine(" A B C D E F G H ");
         }
-        public static void PrintPiece(Peca piece)
+        public static void ImprimePeca(Peca piece)
         {
             if (piece.CorDaPeca == Cor.Branca)
             {
