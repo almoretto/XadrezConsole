@@ -1,4 +1,5 @@
 ﻿using Tabuleiro;
+using System.Collections.Generic;
 
 namespace Xadrez
 {
@@ -9,12 +10,18 @@ namespace Xadrez
         public Cor CorJogadorAtual { get; private set; }
         public bool Terminada { get; private set; }
 
+        private HashSet<Peca> PecasDaPartida;
+        private HashSet<Peca> PecasCapturadas;
+
+
         public PartidaDeXadrez()
         {
             Tabuleiro = new ControleTabuleiro(8, 8);
             Turno = 1;
             CorJogadorAtual = Cor.Branca;
             Terminada = false;
+            PecasDaPartida = new HashSet<Peca>();
+            PecasCapturadas = new HashSet<Peca>();
             ColocarPecas();
         }
         public void EfetuaMovimento(Posicao origem, Posicao destino)
@@ -23,6 +30,10 @@ namespace Xadrez
             p.IncrementarQteMovimentos();
             Peca pecaCapturada = Tabuleiro.RetirarPeca(destino);
             Tabuleiro.ColocarPeca(p, destino);
+            if (pecaCapturada!=null)
+            {
+                PecasCapturadas.Add(pecaCapturada);
+            }
         }
         public void RealizaJogada(Posicao origem, Posicao destino)
         {
@@ -51,6 +62,36 @@ namespace Xadrez
             {
                 throw new TabuleiroException("Posição de destino inválida!");
             }
+        }
+        public HashSet<Peca> PecasCapturadasPorCor(Cor cor)
+        {
+            HashSet<Peca> porCor = new HashSet<Peca>();
+            foreach (Peca p in PecasCapturadas)
+            {
+                if (p.CorDaPeca==cor)
+                {
+                    porCor.Add(p);
+                }
+            }
+            return porCor;
+        }
+        public HashSet<Peca> PecasEmJogo(Cor cor)
+        {
+            HashSet<Peca> porCor = new HashSet<Peca>();
+            foreach (Peca p in PecasCapturadas)
+            {
+                if (p.CorDaPeca == cor)
+                {
+                    porCor.Add(p);
+                }
+            }
+            porCor.ExceptWith(PecasCapturadasPorCor(cor));
+            return porCor;
+        }
+        public void ColocarNovaPeca(char coluna, int linha, Peca p)
+        {
+            Tabuleiro.ColocarPeca(p, new PosicaoXadrez(coluna, linha).ToPosicao());
+            PecasDaPartida.Add(p);
         }
         private void ColocarPecas()
         {
