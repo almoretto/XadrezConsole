@@ -20,6 +20,21 @@ namespace Tabuleiro
         {
             QteMovimentos++;
         }
+        public bool ExisteMovimentosPossiveis()
+        {
+            bool[,] tempMatrix = MovimentosPossiveis();
+            for (int i = 0; i < TabuleiroDaPeca.Linhas; i++)
+            {
+                for (int j = 0; j < TabuleiroDaPeca.Colunas; j++)
+                {
+                    if (tempMatrix[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public abstract bool[,] MovimentosPossiveis();
     }
 }
