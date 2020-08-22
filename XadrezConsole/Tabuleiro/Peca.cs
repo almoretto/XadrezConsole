@@ -16,5 +16,9 @@ namespace Tabuleiro
             TabuleiroDaPeca = tabuleiroDaPeca;
             QteMovimentos = 0;
         }
+        public void IncrementarQteMovimentos()
+        {
+            QteMovimentos++;
+        }
     }
 }

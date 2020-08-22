@@ -12,11 +12,11 @@
             Colunas = colunas;
             Pecas = new Peca[linhas, colunas];
         }
-        public Peca PecaPosicao(int linha, int coluna)
+        public Peca PecaControle(int linha, int coluna)
         {
             return Pecas[linha, coluna];
         }
-        public Peca PecaPosicao(Posicao pos)
+        public Peca PecaControle(Posicao pos)
         {
             return Pecas[pos.Linha, pos.Coluna];
         }
@@ -29,10 +29,21 @@
             Pecas[pos.Linha, pos.Coluna] = p;
             p.PosicaoDaPeca = pos;
         }
+        public Peca RetirarPeca(Posicao pos)
+        {
+            if (PecaControle(pos)==null)
+            {
+                return null;
+            }
+            Peca retirada = PecaControle(pos);
+            retirada.PosicaoDaPeca = null;
+            Pecas[pos.Linha, pos.Coluna] = null;
+            return retirada;
+        }
         public bool ExistePecaNaPosicao(Posicao pos)
         {
             ValidaPosicao(pos);
-            return PecaPosicao(pos) != null;
+            return PecaControle(pos) != null;
         }
         public bool PosicaoValida(Posicao pos)
         {
