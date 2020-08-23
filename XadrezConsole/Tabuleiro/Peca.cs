@@ -20,6 +20,10 @@ namespace Tabuleiro
         {
             QteMovimentos++;
         }
+        public void DecrementarQteMovimentos()
+        {
+            QteMovimentos--;
+        }
         public bool ExisteMovimentosPossiveis()
         {
             bool[,] tempMatrix = MovimentosPossiveis();
