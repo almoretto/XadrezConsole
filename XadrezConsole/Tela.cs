@@ -85,8 +85,12 @@ namespace XadrezConsole
             ImprimirConjunto(partida.PecasCapturadasPorCor(Cor.Branca));
             Console.WriteLine();
             Console.Write("Pretas: ");
+            ConsoleColor c = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
             ImprimirConjunto(partida.PecasCapturadasPorCor(Cor.Preta));
+            Console.ForegroundColor = c;
             Console.WriteLine("--== ==--");
+            
 
         } 
         public static void ImprimirConjunto(HashSet<Peca> pecas)
