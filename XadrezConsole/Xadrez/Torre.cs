@@ -9,7 +9,7 @@ namespace Xadrez
         {
             return "T";
         }
-        private bool VerificaMovimento(Posicao pos)
+        private bool VerificaMovimentodaPeca(Posicao pos)
         {
             Peca p = TabuleiroDaPeca.PecaControle(pos);
             return p == null || p.CorDaPeca != this.CorDaPeca;
@@ -20,7 +20,7 @@ namespace Xadrez
             Posicao pos = new Posicao(0, 0);
             //Acima
             pos.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimento(pos))
+            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
                 if (TabuleiroDaPeca.PecaControle(pos) != null
@@ -32,7 +32,7 @@ namespace Xadrez
             }
             //Abaixo
             pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimento(pos))
+            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
                 if (TabuleiroDaPeca.PecaControle(pos) != null
@@ -44,7 +44,7 @@ namespace Xadrez
             }
             //Direita
             pos.DefinirValores(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna + 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimento(pos))
+            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
                 if (TabuleiroDaPeca.PecaControle(pos) != null
@@ -56,7 +56,7 @@ namespace Xadrez
             }
             //Esquerda
             pos.DefinirValores(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna - 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimento(pos))
+            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
                 if (TabuleiroDaPeca.PecaControle(pos) != null
