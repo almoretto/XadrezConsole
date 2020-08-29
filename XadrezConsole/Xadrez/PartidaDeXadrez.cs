@@ -154,7 +154,7 @@ namespace Xadrez
         public HashSet<Peca> PecasEmJogo(Cor cor)
         {
             HashSet<Peca> porCor = new HashSet<Peca>();
-            foreach (Peca p in PecasCapturadas)
+            foreach (Peca p in PecasDaPartida)
             {
                 if (p.CorDaPeca == cor)
                 {
@@ -175,7 +175,7 @@ namespace Xadrez
                 return Cor.Branca;
             }
         }
-        private Peca RetornaRei(Cor cor)
+        private Peca RetornaRei(Cor cor)//verificado
         {
             foreach (Peca p in PecasEmJogo(cor))
             {
@@ -248,8 +248,8 @@ namespace Xadrez
             ColocarNovaPeca('g', 1, new Cavalo(Cor.Branca, Tabuleiro));
             ColocarNovaPeca('c', 1, new Bispo(Cor.Branca, Tabuleiro));
             ColocarNovaPeca('f', 1, new Bispo(Cor.Branca, Tabuleiro));
-            ColocarNovaPeca('d', 1, new Rei(Cor.Branca, Tabuleiro));
-            ColocarNovaPeca('e', 1, new Rainha(Cor.Branca, Tabuleiro));
+            ColocarNovaPeca('e', 1, new Rei(Cor.Branca, Tabuleiro, this));
+            ColocarNovaPeca('d', 1, new Rainha(Cor.Branca, Tabuleiro));
             ColocarNovaPeca('a', 2, new Peao(Cor.Branca, Tabuleiro));
             ColocarNovaPeca('b', 2, new Peao(Cor.Branca, Tabuleiro));
             ColocarNovaPeca('c', 2, new Peao(Cor.Branca, Tabuleiro));
@@ -266,8 +266,8 @@ namespace Xadrez
             ColocarNovaPeca('g', 8, new Cavalo(Cor.Preta, Tabuleiro));
             ColocarNovaPeca('c', 8, new Bispo(Cor.Preta, Tabuleiro));
             ColocarNovaPeca('f', 8, new Bispo(Cor.Preta, Tabuleiro));
-            ColocarNovaPeca('d', 8, new Rei(Cor.Preta, Tabuleiro));
-            ColocarNovaPeca('e', 8, new Rainha(Cor.Preta, Tabuleiro));
+            ColocarNovaPeca('e', 8, new Rei(Cor.Preta, Tabuleiro, this));
+            ColocarNovaPeca('d', 8, new Rainha(Cor.Preta, Tabuleiro));
             ColocarNovaPeca('a', 7, new Peao(Cor.Preta, Tabuleiro));
             ColocarNovaPeca('b', 7, new Peao(Cor.Preta, Tabuleiro));
             ColocarNovaPeca('c', 7, new Peao(Cor.Preta, Tabuleiro));

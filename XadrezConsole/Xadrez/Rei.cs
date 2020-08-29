@@ -76,7 +76,7 @@ namespace Xadrez
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
             }
             //#JogadaEspecial Roque 
-            if (QteMovimentos == 0 && PartidaDoRei.Xeque)
+            if (QteMovimentos == 0 && !PartidaDoRei.Xeque)
             {
                 //#JogadaEspecial Roque Pequeno
                 Posicao torreRoquePequeno = new Posicao(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna + 3);

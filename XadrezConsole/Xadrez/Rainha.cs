@@ -18,102 +18,102 @@ namespace Xadrez
         {
 
             bool[,] movimentosPossiveis = new bool[TabuleiroDaPeca.Linhas, TabuleiroDaPeca.Colunas];
-            Posicao pos = new Posicao(0, 0);
+            Posicao posR = new Posicao(0, 0);
             //Acima
-            pos.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.Linha = pos.Linha - 1;
+                posR.Linha = posR.Linha - 1;
             }
             //Abaixo
-            pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.Linha = pos.Linha + 1;
+                posR.Linha = posR.Linha + 1;
             }
             //Direita
-            pos.DefinirValores(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna + 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna + 1);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.Coluna = pos.Coluna + 1;
+                posR.Coluna = posR.Coluna + 1;
             }
             //Esquerda
-            pos.DefinirValores(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna - 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna - 1);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.Coluna = pos.Coluna - 1;
+                posR.Coluna = posR.Coluna - 1;
             }
             //Diagonal Esquerda Acima
-            pos.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna - 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna - 1);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
+                posR.DefinirValores(posR.Linha - 1, posR.Coluna - 1);
             }
             //Diagonal Direita Acima
-            pos.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna + 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna + 1);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.DefinirValores(pos.Linha - 1, pos.Coluna + 1);
+                posR.DefinirValores(posR.Linha - 1, posR.Coluna + 1);
             }
             //Diagonal Direita Abaixo
-            pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna + 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna + 1);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna + 1);
+                posR.DefinirValores(posR.Linha + 1, posR.Coluna + 1);
             }
             //Diagonal Esquerda Abaixo
-            pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna - 1);
-            while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
+            posR.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna - 1);
+            while (TabuleiroDaPeca.PosicaoValida(posR) && VerificaMovimentodaPeca(posR))
             {
-                movimentosPossiveis[pos.Linha, pos.Coluna] = true;
-                if (TabuleiroDaPeca.PecaControle(pos) != null
-                    && TabuleiroDaPeca.PecaControle(pos).CorDaPeca != this.CorDaPeca)
+                movimentosPossiveis[posR.Linha, posR.Coluna] = true;
+                if (TabuleiroDaPeca.PecaControle(posR) != null
+                    && TabuleiroDaPeca.PecaControle(posR).CorDaPeca != this.CorDaPeca)
                 {
                     break;
                 }
-                pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna - 1);
+                posR.DefinirValores(posR.Linha + 1, posR.Coluna - 1);
             }
 
             return movimentosPossiveis;
