@@ -37,18 +37,58 @@ namespace Xadrez
             {
                 PecasCapturadas.Add(pecaCapturada);
             }
+            //#JogadaEspecial Roque Pequeno
+            if (p is Rei && destino.Coluna == origem.Coluna + 2)
+            {
+                Posicao origemTorre = new Posicao(origem.Linha, origem.Coluna + 3);
+                Posicao destinoTorre = new Posicao(origem.Linha, origem.Coluna + 1);
+                Peca torreRoque = Tabuleiro.RetirarPeca(origemTorre);
+                torreRoque.IncrementarQteMovimentos();
+                Tabuleiro.ColocarPeca(torreRoque, destinoTorre);
+
+            }
+            //#JogadaEspecial Roque Grande
+            if (p is Rei && destino.Coluna == origem.Coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(origem.Linha, origem.Coluna - 4);
+                Posicao destinoTorre = new Posicao(origem.Linha, origem.Coluna - 1);
+                Peca torreRoque = Tabuleiro.RetirarPeca(origemTorre);
+                torreRoque.IncrementarQteMovimentos();
+                Tabuleiro.ColocarPeca(torreRoque, destinoTorre);
+
+            }
             return pecaCapturada;
         }
         public void DesfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
         {
             Peca p = Tabuleiro.RetirarPeca(destino);
             p.DecrementarQteMovimentos();
-            if (pecaCapturada!=null)
+            if (pecaCapturada != null)
             {
                 Tabuleiro.ColocarPeca(pecaCapturada, destino);
                 PecasCapturadas.Remove(pecaCapturada);
             }
             Tabuleiro.ColocarPeca(p, origem);
+            //#JogadaEspecial Roque Pequeno
+            if (p is Rei && destino.Coluna == origem.Coluna + 2)
+            {
+                Posicao origemTorre = new Posicao(origem.Linha, origem.Coluna + 3);
+                Posicao destinoTorre = new Posicao(origem.Linha, origem.Coluna + 1);
+                Peca torreRoque = Tabuleiro.RetirarPeca(destinoTorre);
+                torreRoque.DecrementarQteMovimentos();
+                Tabuleiro.ColocarPeca(torreRoque, origemTorre);
+
+            }
+            //#JogadaEspecial Roque Grande
+            if (p is Rei && destino.Coluna == origem.Coluna - 2)
+            {
+                Posicao origemTorre = new Posicao(origem.Linha, origem.Coluna - 4);
+                Posicao destinoTorre = new Posicao(origem.Linha, origem.Coluna - 1);
+                Peca torreRoque = Tabuleiro.RetirarPeca(destinoTorre);
+                torreRoque.DecrementarQteMovimentos();
+                Tabuleiro.ColocarPeca(torreRoque, origemTorre);
+
+            }
         }
         public void RealizaJogada(Posicao origem, Posicao destino)
         {
@@ -75,7 +115,7 @@ namespace Xadrez
                 Turno++;
                 AlteraJogador();
             }
-           
+
         }
         public void ValidarPosicaoOrigem(Posicao pos)
         {
@@ -87,7 +127,7 @@ namespace Xadrez
             {
                 throw new TabuleiroException("A peça que está tentando mover não é sua!");
             }
-            if (Tabuleiro.PecaControle(pos).ExisteMovimentosPossiveis())
+            if (!Tabuleiro.PecaControle(pos).ExisteMovimentosPossiveis())
             {
                 throw new TabuleiroException("Não existe movimentos possíveis");
             }
@@ -156,7 +196,7 @@ namespace Xadrez
             foreach (Peca p in PecasEmJogo(CorAdversaria(cor)))
             {
                 bool[,] checkMatrix = p.MovimentosPossiveis();
-                if (checkMatrix[rei.PosicaoDaPeca.Linha,rei.PosicaoDaPeca.Coluna])
+                if (checkMatrix[rei.PosicaoDaPeca.Linha, rei.PosicaoDaPeca.Coluna])
                 {
                     return true;
                 }
@@ -176,7 +216,7 @@ namespace Xadrez
                 {
                     for (int j = 0; j < Tabuleiro.Colunas; j++)
                     {
-                        if (movimentos[i,j])
+                        if (movimentos[i, j])
                         {
                             Posicao origem = p.PosicaoDaPeca;
                             Posicao destino = new Posicao(i, j);
