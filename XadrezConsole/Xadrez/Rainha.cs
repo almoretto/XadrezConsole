@@ -68,7 +68,7 @@ namespace Xadrez
                 pos.Coluna = pos.Coluna - 1;
             }
             //Diagonal Esquerda Acima
-            pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
+            pos.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna - 1);
             while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
@@ -80,7 +80,7 @@ namespace Xadrez
                 pos.DefinirValores(pos.Linha - 1, pos.Coluna - 1);
             }
             //Diagonal Direita Acima
-            pos.DefinirValores(pos.Linha - 1, pos.Coluna + 1);
+            pos.DefinirValores(PosicaoDaPeca.Linha - 1, PosicaoDaPeca.Coluna + 1);
             while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
@@ -92,7 +92,7 @@ namespace Xadrez
                 pos.DefinirValores(pos.Linha - 1, pos.Coluna + 1);
             }
             //Diagonal Direita Abaixo
-            pos.DefinirValores(pos.Linha + 1, pos.Coluna + 1);
+            pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna + 1);
             while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
@@ -101,10 +101,10 @@ namespace Xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(pos.Linha + 1, pos.Coluna + 1);
+                pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna + 1);
             }
             //Diagonal Esquerda Abaixo
-            pos.DefinirValores(pos.Linha + 1, pos.Coluna - 1);
+            pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna - 1);
             while (TabuleiroDaPeca.PosicaoValida(pos) && VerificaMovimentodaPeca(pos))
             {
                 movimentosPossiveis[pos.Linha, pos.Coluna] = true;
@@ -113,7 +113,7 @@ namespace Xadrez
                 {
                     break;
                 }
-                pos.DefinirValores(pos.Linha + 1, pos.Coluna - 1);
+                pos.DefinirValores(PosicaoDaPeca.Linha + 1, PosicaoDaPeca.Coluna - 1);
             }
 
             return movimentosPossiveis;
