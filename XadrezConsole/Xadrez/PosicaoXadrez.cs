@@ -17,7 +17,7 @@ namespace Xadrez
         }
         public override string ToString()
         {
-            Coluna.ToString().ToUpper();
+            Coluna.ToString();
             return " " + Coluna + Linha;
         }
     }
