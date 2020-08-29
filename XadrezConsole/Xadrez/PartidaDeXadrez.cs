@@ -137,7 +137,7 @@ namespace Xadrez
         }
         private Peca RetornaRei(Cor cor)
         {
-            foreach (Peca p in PecasDaPartida)
+            foreach (Peca p in PecasEmJogo(cor))
             {
                 if (p is Rei)
                 {

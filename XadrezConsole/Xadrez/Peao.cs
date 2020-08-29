@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.WindowsRuntime;
-using Tabuleiro;
+﻿using Tabuleiro;
 
 namespace Xadrez
 {
@@ -13,7 +12,7 @@ namespace Xadrez
         private bool ExisteInimigo(Posicao pos)
         {
             Peca p = TabuleiroDaPeca.PecaControle(pos);
-            return p == null || p.CorDaPeca != this.CorDaPeca;
+            return p != null && p.CorDaPeca != this.CorDaPeca;
         }
         private bool PosicaoLivre(Posicao pos)
         {
