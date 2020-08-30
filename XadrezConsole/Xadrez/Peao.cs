@@ -4,7 +4,11 @@ namespace Xadrez
 {
     class Peao : Peca
     {
-        public Peao(Cor cor, ControleTabuleiro tab) : base(cor, tab) { }
+        private PartidaDeXadrez Partida;
+        public Peao(Cor cor, ControleTabuleiro tab, PartidaDeXadrez partida) : base(cor, tab)
+        {
+            Partida = partida;
+        }
         public override string ToString()
         {
             return "P";
@@ -45,6 +49,23 @@ namespace Xadrez
                 {
                     movimentosPossiveis[pos.Linha, pos.Coluna] = true;
                 }
+                if (PosicaoDaPeca.Linha == 3)
+                {
+                    Posicao esquerda = new Posicao(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna - 1);
+                    Posicao direita = new Posicao(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna + 1);
+                    if (TabuleiroDaPeca.PosicaoValida(esquerda)
+                        && ExisteInimigo(esquerda)
+                        && TabuleiroDaPeca.PecaControle(esquerda) == Partida.VulneravelEnPassant)
+                    {
+                        movimentosPossiveis[esquerda.Linha - 1, esquerda.Coluna] = true;
+                    }
+                    if (TabuleiroDaPeca.PosicaoValida(direita)
+                       && ExisteInimigo(direita)
+                       && TabuleiroDaPeca.PecaControle(direita) == Partida.VulneravelEnPassant)
+                    {
+                        movimentosPossiveis[direita.Linha - 1, direita.Coluna] = true;
+                    }
+                }
             }
             else //Pretas
             {
@@ -67,6 +88,23 @@ namespace Xadrez
                 if (TabuleiroDaPeca.PosicaoValida(pos) && ExisteInimigo(pos))
                 {
                     movimentosPossiveis[pos.Linha, pos.Coluna] = true;
+                }
+                if (PosicaoDaPeca.Linha == 4)
+                {
+                    Posicao esquerda = new Posicao(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna - 1);
+                    Posicao direita = new Posicao(PosicaoDaPeca.Linha, PosicaoDaPeca.Coluna + 1);
+                    if (TabuleiroDaPeca.PosicaoValida(esquerda)
+                        && ExisteInimigo(esquerda)
+                        && TabuleiroDaPeca.PecaControle(esquerda) == Partida.VulneravelEnPassant)
+                    {
+                        movimentosPossiveis[esquerda.Linha + 1, esquerda.Coluna] = true;
+                    }
+                    if (TabuleiroDaPeca.PosicaoValida(direita)
+                       && ExisteInimigo(direita)
+                       && TabuleiroDaPeca.PecaControle(direita) == Partida.VulneravelEnPassant)
+                    {
+                        movimentosPossiveis[direita.Linha + 1, direita.Coluna] = true;
+                    }
                 }
             }
 
