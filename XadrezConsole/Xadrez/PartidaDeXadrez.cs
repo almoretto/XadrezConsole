@@ -132,11 +132,29 @@ namespace Xadrez
         public void RealizaJogada(Posicao origem, Posicao destino)
         {
             Peca pecaCapturada = EfetuaMovimento(origem, destino);
+
             if (EstaEmCheck(CorJogadorAtual))
             {
                 DesfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você não pode se colocar em Xeque");
             }
+            
+            Peca pecaTesteJogadasEspeciais = Tabuleiro.PecaControle(destino);
+
+            //#JogadaEspecial Promocao
+            if (pecaTesteJogadasEspeciais is Peao)
+            {
+                if ((pecaTesteJogadasEspeciais.CorDaPeca==Cor.Branca && destino.Linha==0)
+                    ||(pecaTesteJogadasEspeciais.CorDaPeca==Cor.Preta && destino.Linha==7))
+                {
+                    pecaCapturada = Tabuleiro.RetirarPeca(destino);
+                    PecasDaPartida.Remove(pecaTesteJogadasEspeciais);
+                    Peca rainha = new Rainha(pecaTesteJogadasEspeciais.CorDaPeca, Tabuleiro);
+                    PecasDaPartida.Add(rainha);
+                }
+
+            }
+
             if (EstaEmCheck(CorAdversaria(CorJogadorAtual)))
             {
                 Xeque = true;
@@ -155,12 +173,12 @@ namespace Xadrez
                 AlteraJogador();
             }
             //#JogadaEspecial EnPassant
-            Peca pecaEnPassant = Tabuleiro.PecaControle(destino);
-            if ((pecaEnPassant is Peao) &&
-               (((pecaEnPassant.CorDaPeca == Cor.Branca) && (destino.Linha == origem.Linha - 2)) ||
-                 ((pecaEnPassant.CorDaPeca == Cor.Preta) && (destino.Linha == origem.Linha + 2))))
+
+            if ((pecaTesteJogadasEspeciais is Peao) &&
+               (((pecaTesteJogadasEspeciais.CorDaPeca == Cor.Branca) && (destino.Linha == origem.Linha - 2)) ||
+                 ((pecaTesteJogadasEspeciais.CorDaPeca == Cor.Preta) && (destino.Linha == origem.Linha + 2))))
             {
-                VulneravelEnPassant = pecaEnPassant;
+                VulneravelEnPassant = pecaTesteJogadasEspeciais;
             }
             else
             {
